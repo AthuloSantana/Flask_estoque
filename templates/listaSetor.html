@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <h1>Lista Setores</h1>
+    <ul>
+        {% for setor in setores %}
+            <li>{{ setor.id }} - {{ setor.nomeSetor }}<br>
+                <a href="/setor/delete/{{ setor.id }}">Apagar</a>
+                <a href="/setor/update/{{ setor.id }}">Editar</a>
+            <br>
+            <br>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}

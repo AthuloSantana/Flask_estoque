@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+    <form id="produtoForm" action="/produto/create" method="post" onsubmit="return validarFormulario()">
+        Nome: <input type="text" name="nome" required><br>
+        Categoria: <input type="text" name="categoria" required><br>
+        Descrição: <input type="text" name="descricao" required><br>
+        Preço: <input type="number" name="preco" min="0" step="0.01" required><br>
+        Quantidade: <input type="number" name="quantidade" min="1" required><br>
+        Setor:
+        <select name="setor" required>
+            <option value="" disabled selected>Selecione um setor</option>
+            {% for setor in setores %}
+                <option value="{{ setor.id }}">{{ setor.nomeSetor }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="submit" value="Cadastrar">
+    </form>
+    
+    <script>
+    function validarFormulario() {
+        var form = document.getElementById("produtoForm");
+        if (!form.checkValidity()) {
+            // Se o formulário não for válido, exibir mensagem de erro
+            alert("Por favor, preencha todos os campos corretamente.");
+            return false;
+        }
+        return true;
+    }
+    </script>
+    
+{% endblock %}

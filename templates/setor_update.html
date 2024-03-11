@@ -1,0 +1,9 @@
+
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<form action="/setor/update/{{ setor.id }}" method="post">
+    Nome Setor: <input type="text" name="nomeSetor" value="{{ setor.nomeSetor }}"><br>
+    <input type="submit" value="send">
+</form>
+{% endblock %}

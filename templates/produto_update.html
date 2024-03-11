@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <form id="produtoForm" action="/produto/update/{{ produto.id }}" method="post" onsubmit="return validarFormulario()">
+        Nome: <input type="text" name="nome" value="{{ produto.nome if produto }}" required><br>
+        Categoria: <input type="text" name="categoria" value="{{ produto.categoria if produto }}" required><br>
+        Descrição: <input type="text" name="descricao" value="{{ produto.descricao if produto }}" required><br>
+        Preço: <input type="number" name="preco" min="0" step="0.01" value="{{ produto.preco if produto }}" required><br>
+        Quantidade: <input type="number" name="quantidade" min="1" value="{{ produto.quantidade if produto }}" required><br>
+        Setor:
+        <select name="setor" required>
+            <option value="" disabled selected>Selecione um setor</option>
+            {% for setor in setores %}
+                <option value="{{ setor.id }}">{{ setor.nomeSetor }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="submit" value="Atualizar">
+    </form>
+    
+    <script>
+    function validarFormulario() {
+        var form = document.getElementById("produtoForm");
+        if (!form.checkValidity()) {
+            // Se o formulário não for válido, exibir mensagem de erro
+            alert("Por favor, preencha todos os campos corretamente.");
+            return false;
+        }
+        return true;
+    }
+    </script>
+    
+
+{% endblock %}
